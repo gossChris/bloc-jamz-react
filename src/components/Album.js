@@ -97,6 +97,11 @@ class Album extends Component {
       this.setState({hoverSong: null})
     }
 
+    formatTime(duration) {
+    const songMinutes = Math.floor(duration / 60) + ":" + Math.floor(duration % 60);
+    const songTime = duration === null ? "-:--" : songMinutes; ;
+    return songTime;
+    }
 
     playPauseSwitch(song, index) {
       const isSameSong = this.state.currentSong === song;
@@ -152,6 +157,7 @@ class Album extends Component {
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={(e) => this.handleTimeChange(e)}
+          formatTime={() => this.formatTime(this.state.duration)}
           />
       </section>
     );
